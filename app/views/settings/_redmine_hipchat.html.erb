@@ -1,0 +1,28 @@
+<p>
+  <%= content_tag(:label, l(:hipchat_settings_label_auth_token)) %>
+  <%= text_field_tag 'settings[auth_token]', @settings[:auth_token] %>
+  A token from <a href="https://www.hipchat.com/group_admin/api" target="_blank">your API tokens page</a>.
+</p>
+
+<p>
+  <%= content_tag(:label, l(:hipchat_settings_label_room_name)) %>
+  <%= text_field_tag 'settings[room_name]', @settings[:room_name] %>
+  Target room's ID or name.
+</p>
+
+<p>
+  <%= content_tag(:label, l(:hipchat_settings_label_endpoint)) %>
+  <%= text_field_tag 'settings[endpoint]', @settings[:endpoint] %>
+  Using Hipchat server? Put it here. If you leave this empty it will default to api.hipchat.com.
+</p>
+
+<p>
+  <%= content_tag(:label, l(:hipchat_settings_label_notify)) %>
+  <%= check_box_tag 'settings[notify]', 1, @settings[:notify] %>
+  Notify room members? Will trigger sound/popup based on user preferences.
+</p>
+
+<p>
+  <%= content_tag(:label, l(:hipchat_settings_label_projects)) %>
+  <%= select_tag 'settings[projects][]', project_tree_options_for_select(Project.active, :selected => Project.where(:id => @settings[:projects])), :multiple => true, :size => Project.active.size %>
+</p>
